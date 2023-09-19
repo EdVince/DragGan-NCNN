@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33423.256
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "draggan_qt_vs2019", "draggan_qt_vs2019\draggan_qt_vs2019.vcxproj", "{D712A84C-1E62-4715-807A-21E823D741D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D712A84C-1E62-4715-807A-21E823D741D0}.Release|x64.ActiveCfg = Release|x64
+		{D712A84C-1E62-4715-807A-21E823D741D0}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {144FC2D4-0E4F-4DC4-94F6-AF77A1B3BFAA}
+	EndGlobalSection
+EndGlobal
