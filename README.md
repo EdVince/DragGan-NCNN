@@ -4,6 +4,8 @@
 
 You can download the model and app in [model_zoo](https://github.com/EdVince/model_zoo/releases/tag/DragGan-NCNN).
 
+You can access the video in: [bilibili](https://www.bilibili.com/video/BV1iz4y1V7dU) or [youtube](https://www.youtube.com/watch?v=_0eM5BMxXIU)
+
 ## Demo
 
 ![image](./resources/android.jpg)
