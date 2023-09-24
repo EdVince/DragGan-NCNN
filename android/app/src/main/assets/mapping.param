@@ -1,0 +1,55 @@
+7767517
+53 56
+Input            /mapping/Cast_output_0   0 1 /mapping/Cast_output_0
+Split            splitncnn_input0         1 3 /mapping/Cast_output_0 /mapping/Cast_output_0_splitncnn_0 /mapping/Cast_output_0_splitncnn_1 /mapping/Cast_output_0_splitncnn_2
+MemoryData       /mapping/fc0/Reshape_output_0 0 1 /mapping/fc0/Reshape_output_0 0=512
+MemoryData       /mapping/fc0/Transpose_output_0 0 1 /mapping/fc0/Transpose_output_0 0=512 1=512
+MemoryData       /mapping/fc1/Reshape_output_0 0 1 /mapping/fc1/Reshape_output_0 0=512
+MemoryData       /mapping/fc1/Transpose_output_0 0 1 /mapping/fc1/Transpose_output_0 0=512 1=512
+MemoryData       /mapping/fc2/Reshape_output_0 0 1 /mapping/fc2/Reshape_output_0 0=512
+MemoryData       /mapping/fc2/Transpose_output_0 0 1 /mapping/fc2/Transpose_output_0 0=512 1=512
+MemoryData       /mapping/fc3/Reshape_output_0 0 1 /mapping/fc3/Reshape_output_0 0=512
+MemoryData       /mapping/fc3/Transpose_output_0 0 1 /mapping/fc3/Transpose_output_0 0=512 1=512
+MemoryData       /mapping/fc4/Reshape_output_0 0 1 /mapping/fc4/Reshape_output_0 0=512
+MemoryData       /mapping/fc4/Transpose_output_0 0 1 /mapping/fc4/Transpose_output_0 0=512 1=512
+MemoryData       /mapping/fc5/Reshape_output_0 0 1 /mapping/fc5/Reshape_output_0 0=512
+MemoryData       /mapping/fc5/Transpose_output_0 0 1 /mapping/fc5/Transpose_output_0 0=512 1=512
+MemoryData       /mapping/fc6/Reshape_output_0 0 1 /mapping/fc6/Reshape_output_0 0=512
+MemoryData       /mapping/fc6/Transpose_output_0 0 1 /mapping/fc6/Transpose_output_0 0=512 1=512
+MemoryData       /mapping/fc7/Reshape_output_0 0 1 /mapping/fc7/Reshape_output_0 0=512
+MemoryData       /mapping/fc7/Transpose_output_0 0 1 /mapping/fc7/Transpose_output_0 0=512 1=512
+MemoryData       G.mapping.w_avg          0 1 G.mapping.w_avg 0=512
+BinaryOp         /mapping/Mul             2 1 /mapping/Cast_output_0_splitncnn_2 /mapping/Cast_output_0_splitncnn_1 /mapping/Mul_output_0 0=2
+Reduction        /mapping/ReduceMean      1 1 /mapping/Mul_output_0 /mapping/ReduceMean_output_0 0=3 1=0 -23303=1,0 4=1 5=1
+BinaryOp         /mapping/Add             1 1 /mapping/ReduceMean_output_0 /mapping/Add_output_0 0=0 1=1 2=1.000000e-08
+UnaryOp          /mapping/Sqrt            1 1 /mapping/Add_output_0 /mapping/Sqrt_output_0 0=5
+BinaryOp         /mapping/Div             1 1 /mapping/Sqrt_output_0 /mapping/Div_output_0 0=8 1=1 2=1.000000e+00
+BinaryOp         /mapping/Mul_1           2 1 /mapping/Cast_output_0_splitncnn_0 /mapping/Div_output_0 /mapping/Mul_1_output_0 0=2
+Gemm             /mapping/fc0/Add_output_0 3 1 /mapping/Mul_1_output_0 /mapping/fc0/Transpose_output_0 /mapping/fc0/Reshape_output_0 /mapping/fc0/Add_output_0 0=1.000000e+00 1=1.000000e+00 2=0 3=0
+ReLU             /mapping/fc0/LeakyRelu   1 1 /mapping/fc0/Add_output_0 /mapping/fc0/LeakyRelu_output_0 0=2.000000e-01
+BinaryOp         /mapping/fc0/Mul_2       1 1 /mapping/fc0/LeakyRelu_output_0 /mapping/fc0/Mul_2_output_0 0=2 1=1 2=1.414214e+00
+Gemm             /mapping/fc1/Add_output_0 3 1 /mapping/fc0/Mul_2_output_0 /mapping/fc1/Transpose_output_0 /mapping/fc1/Reshape_output_0 /mapping/fc1/Add_output_0 0=1.000000e+00 1=1.000000e+00 2=0 3=0
+ReLU             /mapping/fc1/LeakyRelu   1 1 /mapping/fc1/Add_output_0 /mapping/fc1/LeakyRelu_output_0 0=2.000000e-01
+BinaryOp         /mapping/fc1/Mul_2       1 1 /mapping/fc1/LeakyRelu_output_0 /mapping/fc1/Mul_2_output_0 0=2 1=1 2=1.414214e+00
+Gemm             /mapping/fc2/Add_output_0 3 1 /mapping/fc1/Mul_2_output_0 /mapping/fc2/Transpose_output_0 /mapping/fc2/Reshape_output_0 /mapping/fc2/Add_output_0 0=1.000000e+00 1=1.000000e+00 2=0 3=0
+ReLU             /mapping/fc2/LeakyRelu   1 1 /mapping/fc2/Add_output_0 /mapping/fc2/LeakyRelu_output_0 0=2.000000e-01
+BinaryOp         /mapping/fc2/Mul_2       1 1 /mapping/fc2/LeakyRelu_output_0 /mapping/fc2/Mul_2_output_0 0=2 1=1 2=1.414214e+00
+Gemm             /mapping/fc3/Add_output_0 3 1 /mapping/fc2/Mul_2_output_0 /mapping/fc3/Transpose_output_0 /mapping/fc3/Reshape_output_0 /mapping/fc3/Add_output_0 0=1.000000e+00 1=1.000000e+00 2=0 3=0
+ReLU             /mapping/fc3/LeakyRelu   1 1 /mapping/fc3/Add_output_0 /mapping/fc3/LeakyRelu_output_0 0=2.000000e-01
+BinaryOp         /mapping/fc3/Mul_2       1 1 /mapping/fc3/LeakyRelu_output_0 /mapping/fc3/Mul_2_output_0 0=2 1=1 2=1.414214e+00
+Gemm             /mapping/fc4/Add_output_0 3 1 /mapping/fc3/Mul_2_output_0 /mapping/fc4/Transpose_output_0 /mapping/fc4/Reshape_output_0 /mapping/fc4/Add_output_0 0=1.000000e+00 1=1.000000e+00 2=0 3=0
+ReLU             /mapping/fc4/LeakyRelu   1 1 /mapping/fc4/Add_output_0 /mapping/fc4/LeakyRelu_output_0 0=2.000000e-01
+BinaryOp         /mapping/fc4/Mul_2       1 1 /mapping/fc4/LeakyRelu_output_0 /mapping/fc4/Mul_2_output_0 0=2 1=1 2=1.414214e+00
+Gemm             /mapping/fc5/Add_output_0 3 1 /mapping/fc4/Mul_2_output_0 /mapping/fc5/Transpose_output_0 /mapping/fc5/Reshape_output_0 /mapping/fc5/Add_output_0 0=1.000000e+00 1=1.000000e+00 2=0 3=0
+ReLU             /mapping/fc5/LeakyRelu   1 1 /mapping/fc5/Add_output_0 /mapping/fc5/LeakyRelu_output_0 0=2.000000e-01
+BinaryOp         /mapping/fc5/Mul_2       1 1 /mapping/fc5/LeakyRelu_output_0 /mapping/fc5/Mul_2_output_0 0=2 1=1 2=1.414214e+00
+Gemm             /mapping/fc6/Add_output_0 3 1 /mapping/fc5/Mul_2_output_0 /mapping/fc6/Transpose_output_0 /mapping/fc6/Reshape_output_0 /mapping/fc6/Add_output_0 0=1.000000e+00 1=1.000000e+00 2=0 3=0
+ReLU             /mapping/fc6/LeakyRelu   1 1 /mapping/fc6/Add_output_0 /mapping/fc6/LeakyRelu_output_0 0=2.000000e-01
+BinaryOp         /mapping/fc6/Mul_2       1 1 /mapping/fc6/LeakyRelu_output_0 /mapping/fc6/Mul_2_output_0 0=2 1=1 2=1.414214e+00
+Gemm             /mapping/fc7/Add_output_0 3 1 /mapping/fc6/Mul_2_output_0 /mapping/fc7/Transpose_output_0 /mapping/fc7/Reshape_output_0 /mapping/fc7/Add_output_0 0=1.000000e+00 1=1.000000e+00 2=0 3=0
+ReLU             /mapping/fc7/LeakyRelu   1 1 /mapping/fc7/Add_output_0 /mapping/fc7/LeakyRelu_output_0 0=2.000000e-01
+BinaryOp         /mapping/fc7/Mul_2       1 1 /mapping/fc7/LeakyRelu_output_0 /mapping/Tile_output_0 0=2 1=1 2=1.414214e+00
+Split            splitncnn_0              1 2 /mapping/Tile_output_0 /mapping/Tile_output_0_splitncnn_0 /mapping/Tile_output_0_splitncnn_1
+BinaryOp         /mapping/Sub             2 1 /mapping/Tile_output_0_splitncnn_1 G.mapping.w_avg /mapping/Sub_output_0 0=1
+BinaryOp         /mapping/Mul_3           1 1 /mapping/Sub_output_0 /mapping/Mul_3_output_0 0=2 1=1 2=3.000000e-01
+BinaryOp         /mapping/Sub_2           2 1 /mapping/Tile_output_0_splitncnn_0 /mapping/Mul_3_output_0 /mapping/Sub_2_output_0 0=1
