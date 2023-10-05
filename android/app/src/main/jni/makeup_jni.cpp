@@ -66,6 +66,7 @@ public:
     Where()
     {
         one_blob_only = true;
+        support_packing = false;
     }
 
     virtual int forward(const ncnn::Mat& bottom_blob, ncnn::Mat& top_blob, const ncnn::Option& opt) const
@@ -558,7 +559,7 @@ Java_com_tencent_makeup_StableDiffusion_Init(JNIEnv *env, jobject thiz, jobject 
     generator.opt.use_fp16_packed = false;
     generator.opt.use_fp16_storage = false;
     generator.opt.use_fp16_arithmetic = false;
-    generator.opt.use_packing_layout = false;
+    generator.opt.use_packing_layout = true;
     generator.register_custom_layer("Where", Where_layer_creator);
     generator.register_custom_layer("ConvTranspose2d1", ConvTranspose2d1_layer_creator);
     generator.register_custom_layer("ConvTranspose2d2", ConvTranspose2d2_layer_creator);

@@ -147,12 +147,16 @@ public class MainActivity extends Activity
                     @Override
                     public void run() {
                         for (int it = 0; it < 200; it++) {
+
+                            final long startTime = System.currentTimeMillis();
                             boolean bk = sd.drag(showBitmap, it);
                             final Bitmap styledImage = showBitmap.copy(Bitmap.Config.ARGB_8888, true);
+                            final long endTime = System.currentTimeMillis();
+
                             final int finalIt = it;
                             runOnUiThread(new Runnable() {
                                 public void run() {
-                                    Toast.makeText(getApplicationContext(), "Step:"+ finalIt, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Step:"+ finalIt + ",Time:" + (endTime-startTime) + "ms", Toast.LENGTH_SHORT).show();
                                     imageView.setImageBitmap(styledImage);
                                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                                 }
